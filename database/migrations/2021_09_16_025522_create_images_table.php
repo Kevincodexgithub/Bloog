@@ -19,7 +19,7 @@ class CreateImagesTable extends Migration
             $table->string('url');
 
             $table->unsignedBigInteger('imageable_id');
-            $table->string('imagebale_type');
+            $table->string('imageable_type');
 
             $table->timestamps();
         });
