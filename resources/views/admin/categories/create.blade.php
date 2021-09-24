@@ -30,6 +30,10 @@
 
             </div>
 
+            <a href="{{ route('admin.categories.index') }}" class="btn btn-warning btn-sm float-right text-white">
+                <i class="fas fa-fw fa-reply"></i> Volver
+            </a>
+
             {!! Form::submit('Crear Categoria', ['class' => 'btn btn-primary btn-sm']) !!}
 
             {!! Form::close() !!}
