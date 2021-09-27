@@ -1,5 +1,7 @@
 <div class="form-group">
 
+    {!! Form::hidden('user_id', auth()->user()->id) !!}
+
     {!! Form::label('name', 'Nombre:') !!}
     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del post']) !!}
 
@@ -46,7 +48,8 @@
         </label>
     @endforeach
 
-    @error('tag')
+    @error('tags')
+        <br>
         <span class="text-danger">
             <i class="icon fas fa-ban"></i> {{ $message }}
         </span>
@@ -92,5 +95,12 @@
         {!! Form::radio('status', 2) !!}
         Publicado
     </label>
+
+    @error('status')
+        <br>
+        <span class="text-danger">
+            <i class="icon fas fa-ban"></i> {{ $message }}
+        </span>
+    @enderror
 
 </div>
