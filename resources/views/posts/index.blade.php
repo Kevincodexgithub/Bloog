@@ -3,7 +3,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($posts as $post)
                 <article class="w-full h-80 bg-cover bg-center @if ($loop->first) md:col-span-2 @endif"
-                    style="background-image: url({{ Storage::url($post->image->url) }})">
+                    style="background-image: url(  @if ($post->image)
+                    {{ Storage::url($post->image->url) }}
+                @else https://media.istockphoto.com/photos/default-wood-word-picture-id1312337165?s=612x612
+                    @endif)">
                     <div class="w-full h-full px-8 flex flex-col justify-center">
                         <div class="mb-2">
                             @foreach ($post->tags as $tag)

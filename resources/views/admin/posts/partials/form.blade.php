@@ -57,6 +57,30 @@
 
 </div>
 
+<div class="row mb-3">
+    <div class="col">
+        <div class="image-wrapper">
+            <img id="picture"
+                src="https://media.istockphoto.com/photos/default-wood-word-picture-id1312337165?s=612x612" alt="">
+        </div>
+    </div>
+    <div class="col">
+        <div class="form-group">
+            {!! Form::label('file', 'Imagen que se mostrará en el post') !!}
+            {!! Form::file('file', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate fuga distinctio nobis optio laudantium
+            temporibus nemo nam. Animi saepe suscipit error doloribus nulla temporibus nemo, ratione mollitia tenetur,
+            doloremque est!
+            <br>
+            @error('file')
+                <span class="text-danger">
+                    <i class="icon fas fa-ban"></i> {{ $message }}
+                </span>
+            @enderror
+        </div>
+    </div>
+</div>
+
 <div class="form-group">
 
     {!! Form::label('extract', 'Extracto:') !!}

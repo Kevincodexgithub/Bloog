@@ -3,19 +3,19 @@
         <h1 class="text-4xl font-bold text-gray-600">{{ $post->name }}</h1>
 
         <div class="text-lg text-gray-500 mb-2">
-            {{ $post->extract }}
+            {!! $post->extract !!}
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {{-- Contenido Principal --}}
             <div class="lg:col-span-2">
                 <figure>
                     <img class=" w-full h-80 object-cover
-                object-center"
-                        src="{{ Storage::url($post->image->url) }}" alt="">
+                object-center" src="@if ($post->image) {{ Storage::url($post->image->url) }} @else https://media.istockphoto.com/photos/default-wood-word-picture-id1312337165?s=612x612 @endif"
+                        alt="">
                 </figure>
 
                 <div class="text-base text-gray-500 mt-4">
-                    {{ $post->body }}
+                    {!! $post->body !!}
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
                         <li class="mb-4">
                             <a class="flex" href="{{ route('posts.show', $similar) }}">
                                 <img class="flex-initial h-20 w-36 object-cover object-center"
-                                    src="{{ Storage::url($similar->image->url) }}" alt="">
+                                    src="@if ($similar->image) {{ Storage::url($similar->image->url) }} @else https://media.istockphoto.com/photos/default-wood-word-picture-id1312337165?s=612x612 @endif" alt="">
                                 <span class="flex-1 ml-2 text-gray-600">{{ $similar->name }}</span>
                             </a>
                         </li>
