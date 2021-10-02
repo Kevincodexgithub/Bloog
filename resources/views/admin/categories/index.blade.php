@@ -3,6 +3,12 @@
 @section('title', 'Bloog')
 
 @section('content_header')
+    @can('admin.categories.create')
+        <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.categories.create') }}"
+            title="Agregar Categoria">
+            <i class="fas fa-fw fa-plus-circle"></i> Agregar categoria
+        </a>
+    @endcan
     <h1>Listado de Categorias</h1>
 @stop
 
@@ -16,11 +22,6 @@
     @endif
 
     <div class="card">
-        <div class="card-header">
-            <a class="btn btn-secondary btn-sm" href="{{ route('admin.categories.create') }}" title="Agregar Categoria">
-                <i class="fas fa-fw fa-plus-circle"></i> Agregar
-            </a>
-        </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -36,15 +37,20 @@
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.categories.edit', $category) }}"
-                                    title="Editar"><i class="fas fa-pen-square"></i></a>
+                                @can('admin.categories.edit')
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.categories.edit', $category) }}"
+                                        title="Editar"><i class="fas fa-pen-square"></i>
+                                    </a>
+                                @endcan
                             </td>
                             <td width="10px">
-                                <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
-                                </form>
+                                @can('admin.categories.destroy')
+                                    <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

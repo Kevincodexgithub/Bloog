@@ -3,9 +3,12 @@
 @section('title', 'Bloog')
 
 @section('content_header')
-    <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.tags.create') }}" title="Agregar Etiquetas">
-        <i class="fas fa-fw fa-plus-circle"></i> Agregar Etiqueta
-    </a>
+    @can('admin.tags.create')
+        <a class="btn btn-secondary btn-sm float-right" href="{{ route('admin.tags.create') }}" title="Agregar Etiquetas">
+            <i class="fas fa-fw fa-plus-circle"></i> Agregar Etiqueta
+        </a>
+    @endcan
+
     <h1>Listados de etiquetas</h1>
 @stop
 
@@ -34,15 +37,20 @@
                             <td>{{ $tag->id }}</td>
                             <td>{{ $tag->name }}</td>
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.tags.edit', $tag) }}"
-                                    title="Editar"><i class="fas fa-pen-square"></i></a>
+                                @can('admin.tags.edit')
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.tags.edit', $tag) }}"
+                                        title="Editar"><i class="fas fa-pen-square"></i>
+                                    </a>
+                                @endcan
                             </td>
                             <td width="10px">
-                                <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
-                                </form>
+                                @can('admin.tags.destroy')
+                                    <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

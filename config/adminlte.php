@@ -250,38 +250,41 @@ return [
             'text'        => 'Dashboard',
             'route'         => 'admin.home',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
-            'label'       => 4,
-            'label_color' => 'success',
+            'can' => 'admin.home',
         ],
         [
             'text'        => 'Usuarios',
             'route'         => 'admin.users.index',
             'icon'        => 'fas fa-fw fa-users',
-            'active' => ['admin/users*']
+            'active' => ['admin/users*'],
+            'can' => 'admin.users.index',
         ],
-        ['header' => 'ADMINISTRADOR'],
         [
             'text' => 'Categorias',
             'route'  => 'admin.categories.index',
             'icon' => 'fab fa-fw fa-buffer',
-            'active' => ['admin/categories*']
+            'active' => ['admin/categories*'],
+            'can' => 'admin.categories.index',
         ],
         [
             'text' => 'Etiquetas',
             'route'  => 'admin.tags.index',
             'icon' => 'fas fa-fw fa-tags',
-            'active' => ['admin/tags*']
+            'active' => ['admin/tags*'],
+            'can' => 'admin.tags.index',
         ],
         ['header' => 'OPCIONES DE BLOG'],
         [
             'text'       => 'Listado de Post',
             'icon'      => 'far fa-fw fa-clipboard',
             'route'        => 'admin.posts.index',
+            'can' => 'admin.posts.index',
         ],
         [
             'text'       => 'Crear nuevo de Post',
             'icon'       => 'far fa-fw fa-file-alt',
             'route'        => 'admin.posts.create',
+            'can' => 'admin.posts.create',
         ],
     ],
 
