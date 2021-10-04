@@ -10,6 +10,13 @@ use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:admin.roles.index')->only('index');
+        $this->middleware('can:admin.roles.create')->only('create', 'store');
+        $this->middleware('can:admin.roles.edit')->only('edit', 'update');
+        $this->middleware('can:admin.roles.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +24,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
 
-        return view('admin.roles.index', compact('roles'));
+
+        return view('admin.roles.index');
     }
 
     /**
@@ -50,17 +57,6 @@ class RoleController extends Controller
         $role->permissions()->sync($request->permissions);
 
         return redirect()->route('admin.roles.index')->with('info', 'El rol se creo con exito');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Role  $role
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Role $role)
-    {
-        return view('admin.roles.show', compact('role'));
     }
 
     /**

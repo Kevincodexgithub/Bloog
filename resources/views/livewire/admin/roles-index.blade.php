@@ -1,29 +1,30 @@
 <div class="card">
-
     <div class="card-header">
-        <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el nombre de un post">
+        <input wire:model="search" class="form-control" type="text" placeholder="Ingrese el nombre de un rol">
     </div>
 
-    @if ($posts->count())
+    @if ($roles->count())
+
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Role</th>
                         <th colspan="2"></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($posts as $post)
+                    @foreach ($roles as $role)
                         <tr>
-                            <td>{{ $post->id }}</td>
-                            <td>{{ $post->name }}</td>
+                            <td>{{ $role->id }}</td>
+                            <td>{{ $role->name }}</td>
                             <td width="10px">
 
-                                @can('admin.posts.edit')
-                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.posts.edit', $post) }}">
+                                @can('admin.roles.edit')
+                                    <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-primary btn-sm"
+                                        title="Editar">
                                         <i class="fas fa-pen-square"></i>
                                     </a>
                                 @endcan
@@ -31,12 +32,11 @@
                             </td>
                             <td width="10px">
 
-                                @can('admin.posts.destroy')
-                                    <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                                @can('admin.roles.destroy')
+                                    <form action="{{ route('admin.roles.destroy', $role) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-
-                                        <button class="btn btn-danger btn-sm" type="submit">
+                                        <button type="submit" class="btn btn-danger btn-sm">
                                             <i class="far fa-trash-alt"></i>
                                         </button>
                                     </form>
@@ -48,17 +48,15 @@
                 </tbody>
             </table>
         </div>
-
         <div class="card-footer">
-            {{ $posts->links() }}
+            {{ $roles->links() }}
         </div>
     @else
         <div class="card-body">
             <div class="alert alert-danger">
                 <h5><i class="icon fas fa-ban"></i> No hay resultados</h5>
-                Intente buscar otro post
+                Intente buscar otro rol
             </div>
         </div>
     @endif
-
 </div>

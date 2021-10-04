@@ -8,7 +8,7 @@
 
 @section('content')
     @if (session('info'))
-        <div class="alert alert-success alert-dismissible">
+        <div id="alerta" class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h5><i class="icon fas fa-check"></i> {{ session('info') }}</h5>
         </div>
@@ -16,25 +16,8 @@
     <div class="card">
         <div class="card-body">
             {!! Form::model($category, ['route' => ['admin.categories.update', $category], 'method' => 'put']) !!}
-            <div class="form-group">
-                {!! Form::label('name', 'Nombre') !!}
-                {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la categoria']) !!}
 
-                @error('name')
-                    <span class="text-danger"><i class="icon fas fa-ban"></i> {{ $message }}</span>
-                @enderror
-
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('slug', 'Slug') !!}
-                {!! Form::text('slug', null, ['class' => 'form-control', 'readonly']) !!}
-
-                @error('slug')
-                    <span class="text-danger"><i class="icon fas fa-ban"></i> {{ $message }}</span>
-                @enderror
-
-            </div>
+            @include('admin.categories.partials.form')
 
             <a href="{{ route('admin.categories.index') }}" class="btn btn-warning btn-sm float-right text-white">
                 <i class="fas fa-fw fa-reply"></i> Volver
@@ -58,5 +41,7 @@
                 space: '-'
             });
         });
+
+        $("#alerta").delay(1800).fadeOut("slow");
     </script>
 @endsection

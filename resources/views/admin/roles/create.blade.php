@@ -13,6 +13,10 @@
 
             @include('admin.roles.partials.form')
 
+            <a href="{{ route('admin.roles.index') }}" class="btn btn-warning btn-sm float-right text-white">
+                <i class="fas fa-fw fa-reply"></i> Volver
+            </a>
+
             {!! Form::submit('Crear Rol', ['class' => 'btn btn-primary btn-sm']) !!}
         </div>
     </div>
